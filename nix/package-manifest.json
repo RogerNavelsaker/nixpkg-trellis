@@ -4,7 +4,8 @@
     "repo": "trellis",
     "npmName": "@os-eco/trellis-cli",
     "version": "0.1.0",
-    "packageRevision": 1
+    "packageRevision": 1,
+    "sourceRev": "cfdc59f5ef59dcdd961b268ae0320bbcc0bd406d"
   },
   "binary": {
     "name": "trellis",
@@ -16,7 +17,7 @@
   },
   "meta": {
     "description": "Git-native specs, plans, and handoff artifacts for the os-eco toolchain",
-    "homepage": "https://github.com/RogerNavelsaker/trellis",
+    "homepage": "https://github.com/RogerNavelsaker/trellis#readme",
     "licenseSpdx": "MIT"
   }
 }
