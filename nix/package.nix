@@ -31,8 +31,8 @@ EOF
   trellisSrc = fetchFromGitHub {
     owner = "RogerNavelsaker";
     repo = "trellis";
-    rev = "cfdc59f5ef59dcdd961b268ae0320bbcc0bd406d";
-    hash = "sha256-GWFtCd4rdv+btQxhQF9ncwVnP6rg7ZeULVxin05xC48=";
+    rev = "a02461bea78ad5135f0d14cb83ac65ac11598dce";
+    hash = "sha256-Pk7HxKgyalbJ/Ip4gMBaPrjFflqVtOQGa+RKVeRbtCY=";
   };
   basePackage = bun2nix.writeBunApplication {
     pname = manifest.package.repo;
