@@ -75,8 +75,14 @@ symlinkJoin {
       echo "missing trellis entrypoint: $entrypoint" >&2
       exit 1
     fi
+    mkdir -p "$out/share/${manifest.binary.name}/skill"
+    cp ${../skill/SKILL.md} "$out/share/${manifest.binary.name}/skill/SKILL.md"
     cat > "$out/bin/${manifest.binary.name}" <<EOF
 #!${lib.getExe bash}
+if [ "\$1" = "skill" ]; then
+  cat "$out/share/${manifest.binary.name}/skill/SKILL.md"
+  exit 0
+fi
 exec ${lib.getExe' bun "bun"} "$entrypoint" "\$@"
 EOF
     chmod +x "$out/bin/${manifest.binary.name}"
