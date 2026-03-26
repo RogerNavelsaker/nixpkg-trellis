@@ -5,7 +5,7 @@
     "npmName": "@os-eco/trellis-cli",
     "version": "0.1.0",
     "packageRevision": 1,
-    "sourceRev": "d25b00ad7c918970088d6ee9ed7b649f9489d414"
+    "sourceRev": "b05f041eea4c79313021eec1447611a728d5d951"
   },
   "binary": {
     "name": "trellis",
