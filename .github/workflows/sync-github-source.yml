@@ -2,8 +2,6 @@ name: Sync GitHub Source
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "17 */6 * * *"
 
 permissions:
   contents: write
@@ -25,7 +23,7 @@ jobs:
       - name: Sync package from GitHub source
         run: bun run sync:github-source
 
-      - name: Detect version
+      - name: Detect source revision
         id: version
         run: |
           version=$(jq -r '.package.version' nix/package-manifest.json)
@@ -75,7 +73,7 @@ jobs:
           tag_name: src-${{ steps.version.outputs.rev }}
           generate_release_notes: true
           body: |
-            Automated sync from `RogerNavelsaker/trellis`.
+            Manual sync from `RogerNavelsaker/trellis` branch head.
 
             Source package version: `${{ steps.version.outputs.version }}`
             Source revision: `${{ steps.version.outputs.rev }}`
