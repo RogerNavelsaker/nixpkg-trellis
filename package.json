@@ -26,8 +26,10 @@
   },
   "scripts": {
     "show-manifest": "bun --eval \"console.log(await Bun.file('nix/package-manifest.json').text())\"",
-    "sync:bun-deps": "bunx bun2nix --lock-file bun.lock --output-file bun.nix",
-    "sync:source": "bun run scripts/sync-from-source.ts"
+    "sync:bun-deps": "bun x bun2nix --lock-file bun.lock --output-file bun.nix",
+    "sync:source": "bun run sync:github-source",
+    "sync:github-source": "bun run scripts/sync-from-source.ts",
+    "sync:npm": "bun run scripts/sync-from-npm.ts"
   },
   "dependencies": {
     "chalk": "^5.6.0",

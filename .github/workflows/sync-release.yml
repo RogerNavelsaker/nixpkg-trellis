@@ -1,4 +1,4 @@
-name: Sync And Release From Source
+name: Sync GitHub Source
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  sync-and-release:
+  sync-github-source:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,8 +22,8 @@ jobs:
         with:
           bun-version: 1.3.10
 
-      - name: Sync package from source
-        run: bun run sync:source
+      - name: Sync package from GitHub source
+        run: bun run sync:github-source
 
       - name: Detect version
         id: version
@@ -58,7 +58,7 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git commit -m "chore: sync trellis ${{ steps.version.outputs.version }} from source"
+          git commit -m "chore: sync trellis ${{ steps.version.outputs.version }} from GitHub source"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
 

@@ -24,9 +24,14 @@ Nix packaging for `@os-eco/trellis-cli` using Bun and `bun2nix`.
 - `nix/package-manifest.json`: pinned source metadata and binary naming
 - `bun.lock`: copied from the pinned Trellis source repo for dependency generation
 - `bun.nix`: generated Bun dependency graph used by Nix
+- `.github/workflows/sync-release.yml`: enabled GitHub-source sync workflow
+- `.github/workflows/sync-npm.yml`: disabled npm-source sync workflow placeholder
 
 ## Notes
 
 - The default `out` output installs `trellis`.
 - The shortform `tl` is available as a separate Nix output.
 - This repo is packaging-only. Trellis specs and workflows belong in consumer repos.
+- Source of truth is the live GitHub repo today. Keep syncing from `RogerNavelsaker/trellis` until Trellis is actually released on npm under `@os-eco` by `jayminwest`.
+- Use `bun run sync:github-source` for the current upstream path.
+- `bun run sync:npm` exists only as a disabled handoff point for the future npm-based source path.
