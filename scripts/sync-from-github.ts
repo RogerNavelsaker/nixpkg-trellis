@@ -117,10 +117,7 @@ export async function syncFromGitHub(mode: SyncMode) {
     packageJson.bin = sourcePackageJson.bin;
     packageJson.engines = sourcePackageJson.engines;
     packageJson.dependencies = sourcePackageJson.dependencies;
-    packageJson.devDependencies = {
-      ...sourcePackageJson.devDependencies,
-      bun2nix: packageJson.devDependencies?.bun2nix ?? "2.0.8",
-    };
+    packageJson.devDependencies = {};
 
     const packageNix = await Bun.file(packageNixPath).text();
     const updatedPackageNix = packageNix

@@ -37,10 +37,16 @@ EOF
   basePackage = bun2nix.writeBunApplication {
     pname = manifest.package.repo;
     version = packageVersion;
-    packageJson = trellisSrc + "/package.json";
+    packageJson = ../package.json;
     src = trellisSrc;
     dontUseBunBuild = true;
     dontUseBunCheck = true;
+    postPatch = ''
+      # Replace upstream packaging metadata with the synced local packaging view
+      # so the Bun install phase only sees the dependencies encoded in bun.nix.
+      cp ${../package.json} package.json
+      cp ${../bun.lock} bun.lock
+    '';
     startScript = ''
       bunx ${manifest.binary.upstreamName or manifest.binary.name} "$@"
     '';
