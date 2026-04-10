@@ -1,0 +1,82 @@
+name: Sync GitHub Release
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-github-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: DeterminateSystems/nix-installer-action@v19
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.10
+
+      - name: Sync package from GitHub release
+        run: bun run sync:github-release
+
+      - name: Detect upstream release
+        id: version
+        run: |
+          version=$(jq -r '.package.version' nix/package-manifest.json)
+          rev=$(jq -r '.package.sourceRev' nix/package-manifest.json)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "rev=$rev" >> "$GITHUB_OUTPUT"
+
+      - name: Commit release sync
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add nix/package-manifest.json nix/package.nix package.json bun.lock bun.nix flake.lock
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "chore: sync trellis release ${{ steps.version.outputs.version }}"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Build package outputs
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          nix build .#default --no-link
+          nix build '.#default^tl' --no-link
+
+      - name: Check if upstream release tag exists
+        id: tag
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          if git rev-parse "refs/tags/upstream-v${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create upstream release tag
+        if: steps.commit.outputs.changed == 'true' && steps.tag.outputs.exists == 'false'
+        run: |
+          git tag "upstream-v${{ steps.version.outputs.version }}"
+          git push origin "upstream-v${{ steps.version.outputs.version }}"
+
+      - name: Create GitHub release
+        if: steps.commit.outputs.changed == 'true' && steps.tag.outputs.exists == 'false'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: upstream-v${{ steps.version.outputs.version }}
+          generate_release_notes: true
+          body: |
+            Automated sync from the latest Trellis GitHub release.
+
+            Upstream package version: `${{ steps.version.outputs.version }}`
+            Upstream source revision: `${{ steps.version.outputs.rev }}`

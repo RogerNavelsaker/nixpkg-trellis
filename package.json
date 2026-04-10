@@ -1,0 +1,44 @@
+{
+  "name": "@os-eco/trellis-cli",
+  "version": "0.1.0",
+  "description": "Git-native specs, plans, and handoff artifacts for the os-eco toolchain",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RogerNavelsaker/trellis.git"
+  },
+  "homepage": "https://github.com/RogerNavelsaker/trellis#readme",
+  "bugs": {
+    "url": "https://github.com/RogerNavelsaker/trellis/issues"
+  },
+  "keywords": [
+    "os-eco",
+    "trellis",
+    "cli",
+    "git-native",
+    "workflow",
+    "planning"
+  ],
+  "bin": {
+    "trellis": "src/index.ts",
+    "tl": "src/index.ts"
+  },
+  "scripts": {
+    "show-manifest": "bun --eval \"console.log(await Bun.file('nix/package-manifest.json').text())\"",
+    "sync:bun-deps": "bun x bun2nix --lock-file bun.lock --output-file bun.nix",
+    "sync:source": "bun run sync:github-release",
+    "sync:github-source": "bun run scripts/sync-from-github-source.ts",
+    "sync:github-release": "bun run scripts/sync-from-github-release.ts",
+    "sync:npm": "bun run sync:npm-source",
+    "sync:npm-source": "bun run scripts/sync-from-npm.ts"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^14.0.3"
+  },
+  "devDependencies": {},
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}
