@@ -3,9 +3,9 @@
   "package": {
     "repo": "trellis",
     "npmName": "@os-eco/trellis-cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "packageRevision": 1,
-    "sourceRev": "1c18d2df6057d3697c7d988c1b618255a6c3cc95"
+    "sourceRev": "54af753c04c05ce9e1d5814910fe80479d61e049"
   },
   "binary": {
     "name": "trellis",
