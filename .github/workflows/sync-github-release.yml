@@ -25,6 +25,9 @@ jobs:
       - name: Sync package from GitHub release
         run: bun run sync:github-release
 
+      - name: Install Bun dependencies and regenerate bun.nix
+        run: bun install
+
       - name: Detect upstream release
         id: version
         run: |
