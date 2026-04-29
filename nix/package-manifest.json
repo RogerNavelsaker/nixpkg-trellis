@@ -4,7 +4,7 @@
     "repo": "trellis",
     "npmName": "@os-eco/trellis-cli",
     "version": "0.2.1",
-    "packageRevision": 1,
+    "packageRevision": 2,
     "sourceRev": "54af753c04c05ce9e1d5814910fe80479d61e049",
     "sourceHash": "sha256-2Rfr2aMFira9eOmAg4rTyfQvy8odL2BNyxx+UKrWXus="
   },
