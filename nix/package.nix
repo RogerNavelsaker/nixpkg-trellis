@@ -43,8 +43,9 @@ EOF
     bunInstallFlags = "--linker=isolated --frozen-lockfile";
     bunCompileToBytecode = false;
     postPatch = ''
+      cp ${../package.json} package.json
       cp ${../bun.lock} bun.lock
-      chmod u+w bun.lock
+      chmod u+w bun.lock package.json
     '';
     nativeBuildInputs = [ installShellFiles ];
     postInstall = ''
