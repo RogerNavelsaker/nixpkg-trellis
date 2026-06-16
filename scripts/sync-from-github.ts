@@ -112,6 +112,10 @@ export async function syncFromGitHub(mode: SyncMode) {
     await Bun.write(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
     await Bun.write(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
 
+    // Ensure bun.lock and bun.nix are updated to reflect the new devDependencies
+    await run(["bun", "install"]);
+    await run(["bun", "run", "postinstall"]);
+
     console.log(
       JSON.stringify(
         {
