@@ -3,10 +3,10 @@
   "package": {
     "repo": "trellis",
     "npmName": "@os-eco/trellis-cli",
-    "version": "0.2.1",
+    "version": "0.1.0",
     "packageRevision": 2,
-    "sourceRev": "54af753c04c05ce9e1d5814910fe80479d61e049",
-    "sourceHash": "sha256-2Rfr2aMFira9eOmAg4rTyfQvy8odL2BNyxx+UKrWXus="
+    "sourceRev": "2c89d320f723997b68ce92913053f05827203b13",
+    "sourceHash": "sha256-XdmIl/Y2IVLKponGev/D4G0QS5yZetcOujJlrMo2Olc="
   },
   "binary": {
     "name": "trellis",
@@ -17,8 +17,8 @@
     ]
   },
   "meta": {
-    "description": "Git-native specs, plans, and handoff artifacts for the os-eco toolchain",
-    "homepage": "https://github.com/RogerNavelsaker/trellis#readme",
+    "description": "Agentic-readiness audit & sync for code repositories — score a repo against a de-branded rubric, detect canonical-config drift, and keep a fleet in standard",
+    "homepage": "https://github.com/jayminwest/trellis",
     "licenseSpdx": "MIT"
   }
 }

@@ -1,4 +1,4 @@
-{ bash, bun2nix, fetchFromGitHub, installShellFiles, lib, symlinkJoin }:
+{ bash, bun2nix, fetchFromGitHub, lib, symlinkJoin }:
 
 let
   manifest = builtins.fromJSON (builtins.readFile ./package-manifest.json);
@@ -27,7 +27,7 @@ EOF
     ''
   ) aliasOutputs;
   src = fetchFromGitHub {
-    owner = "RogerNavelsaker";
+    owner = "jayminwest";
     repo = "trellis";
     rev = manifest.package.sourceRev;
     hash = manifest.package.sourceHash;
@@ -47,7 +47,6 @@ EOF
       cp ${../bun.lock} bun.lock
       chmod u+w bun.lock package.json
     '';
-    nativeBuildInputs = [ installShellFiles ];
     postInstall = ''
       mkdir -p "$out/libexec"
       mv "$out/bin/${manifest.binary.name}" "$out/libexec/${manifest.binary.name}"
@@ -62,13 +61,6 @@ fi
 exec "$out/libexec/${manifest.binary.name}" "\$@"
 EOF
       chmod +x "$out/bin/${manifest.binary.name}"
-      "$out/bin/${manifest.binary.name}" completions bash > "$TMPDIR/${manifest.binary.name}.bash"
-      "$out/bin/${manifest.binary.name}" completions fish > "$TMPDIR/${manifest.binary.name}.fish"
-      "$out/bin/${manifest.binary.name}" completions zsh > "$TMPDIR/_${manifest.binary.name}"
-      installShellCompletion --cmd ${manifest.binary.name} \
-        --bash "$TMPDIR/${manifest.binary.name}.bash" \
-        --fish "$TMPDIR/${manifest.binary.name}.fish" \
-        --zsh "$TMPDIR/_${manifest.binary.name}"
     '';
     meta = with lib; {
       description = manifest.meta.description;
