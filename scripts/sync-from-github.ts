@@ -1,4 +1,4 @@
-const sourceRepo = "https://github.com/RogerNavelsaker/trellis.git";
+const sourceRepo = "https://github.com/jayminwest/trellis.git";
 const manifestPath = "nix/package-manifest.json";
 const packageJsonPath = "package.json";
 
@@ -67,7 +67,7 @@ export async function syncFromGitHub(mode: SyncMode) {
     const prefetchHash = await run([
       "nix-prefetch-url",
       "--unpack",
-      `https://github.com/RogerNavelsaker/trellis/archive/${sourceRev}.tar.gz`,
+      `https://github.com/jayminwest/trellis/archive/${sourceRev}.tar.gz`,
     ]);
     const sourceHash = await run(["nix", "hash", "to-sri", "--type", "sha256", prefetchHash.split("\n")[0]]);
 

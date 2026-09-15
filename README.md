@@ -4,7 +4,7 @@ Nix packaging for `@os-eco/trellis-cli` using Bun and `bun2nix`.
 
 ## Package
 
-- Upstream source: `RogerNavelsaker/trellis`
+- Upstream source: `jayminwest/trellis`
 - Upstream package: `@os-eco/trellis-cli`
 - Pinned version: `0.1.0`
 - Installed binary: `trellis`
@@ -33,7 +33,7 @@ Nix packaging for `@os-eco/trellis-cli` using Bun and `bun2nix`.
 - The default `out` output installs `trellis`.
 - The shortform `tl` is available as a separate Nix output.
 - This repo is packaging-only. Trellis specs and workflows belong in consumer repos.
-- Source of truth is the live GitHub repo today. Keep syncing from `RogerNavelsaker/trellis` until Trellis is actually released on npm under `@os-eco` by `jayminwest`.
+- Source of truth is the live GitHub repo today. Keep syncing from `jayminwest/trellis` until Trellis is released on npm under `@os-eco`.
 - `bun run sync:github-release` is the active lane and follows the latest Trellis Git tag.
 - `bun run sync:github-source` is the manual fallback lane for branch-head sync.
 - `bun run sync:npm-source` exists only as a disabled handoff point for the future npm-based source path.
