@@ -3,10 +3,10 @@
   "package": {
     "repo": "trellis",
     "npmName": "@os-eco/trellis-cli",
-    "version": "0.1.0",
+    "version": "0.3.0",
     "packageRevision": 2,
-    "sourceRev": "2c89d320f723997b68ce92913053f05827203b13",
-    "sourceHash": "sha256-XdmIl/Y2IVLKponGev/D4G0QS5yZetcOujJlrMo2Olc="
+    "sourceRev": "96472022117d687468ff90037620df565d6b9829",
+    "sourceHash": "sha256-juzwuF4q1H7HSc4uUK51F0YxTwvQ+/PFYw6Rx3bRBRs="
   },
   "binary": {
     "name": "trellis",
@@ -17,7 +17,7 @@
     ]
   },
   "meta": {
-    "description": "Agentic-readiness audit & sync for code repositories — score a repo against a de-branded rubric, detect canonical-config drift, and keep a fleet in standard",
+    "description": "Offline TypeScript structural audit with a native 0–100 sloppiness index and optional unscored provider evidence",
     "homepage": "https://github.com/jayminwest/trellis",
     "licenseSpdx": "MIT"
   }

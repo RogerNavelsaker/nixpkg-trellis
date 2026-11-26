@@ -1,0 +1,11 @@
+{
+  "kind": "git-head",
+  "upstream": "https://github.com/jayminwest/trellis.git",
+  "tag_regex": "",
+  "tag_prefix": "v",
+  "version_file": "nix/package-manifest.json",
+  "version_jq": ".package.sourceRev",
+  "version_grep": "",
+  "pinned_paths": [],
+  "sync_script": "nix shell nixpkgs#bun -c sh -c 'bun run sync:github-source'"
+}
