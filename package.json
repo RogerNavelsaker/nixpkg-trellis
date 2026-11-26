@@ -1,7 +1,7 @@
 {
   "name": "@os-eco/trellis-cli",
-  "version": "0.1.0",
-  "description": "Agentic-readiness audit & sync for code repositories — score a repo against a de-branded rubric, detect canonical-config drift, and keep a fleet in standard",
+  "version": "0.3.0",
+  "description": "Offline TypeScript structural audit with a native 0–100 sloppiness index and optional unscored provider evidence",
   "license": "MIT",
   "type": "module",
   "repository": {
@@ -14,10 +14,12 @@
   },
   "keywords": [
     "audit",
-    "standards",
-    "rubric",
-    "agents",
-    "ai",
+    "static-analysis",
+    "typescript",
+    "complexity",
+    "duplication",
+    "import-cycles",
+    "code-quality",
     "cli",
     "developer-tools"
   ],
@@ -36,7 +38,7 @@
   "dependencies": {
     "commander": "^15.0.0",
     "js-yaml": "^4.1.1",
-    "pino": "^10.3.1",
+    "typescript": "6.0.3",
     "zod": "^4.4.3"
   },
   "devDependencies": {
